@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "titolo": "Vaso Parametrico",
+      "descrizione": "Geometrie organiche generate algoritmicamente.",
+      "materiale": "PLA",
+      "immagine": "",
+      "etsy_url": ""
+    },
+    {
+      "titolo": "Componente Meccanico",
+      "descrizione": "Ingranaggi e staffe funzionali ad alta resistenza.",
+      "materiale": "PETG",
+      "immagine": "",
+      "etsy_url": ""
+    },
+    {
+      "titolo": "Miniatura Dettagliata",
+      "descrizione": "Dettagli finissimi per modellismo e collezionismo.",
+      "materiale": "RESINA",
+      "immagine": "",
+      "etsy_url": ""
+    },
+    {
+      "titolo": "Parti Flessibili",
+      "descrizione": "Guarnizioni e protezioni elastiche su misura.",
+      "materiale": "TPU",
+      "immagine": "",
+      "etsy_url": ""
+    },
+    {
+      "titolo": "Design da Esposizione",
+      "descrizione": "Finiture lucide ed effetti metallici.",
+      "materiale": "PLA SILK",
+      "immagine": "",
+      "etsy_url": ""
+    },
+    {
+      "titolo": "Prototipazione Rapida",
+      "descrizione": "Dall'idea al pezzo fisico in poche ore.",
+      "materiale": "PROTOTIPO",
+      "immagine": "",
+      "etsy_url": ""
+    }
+  ]
+}
