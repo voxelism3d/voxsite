@@ -1,0 +1,285 @@
+backend:
+  name: github
+  repo: voxelism3d/voxsite
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+locale: it
+
+collections:
+  # ------------------------------------------------------------------
+  - name: lavori
+    label: "Lavori e prodotti"
+    editor:
+      preview: false
+    files:
+      - name: lavori
+        label: "Elenco dei lavori"
+        file: content/works.json
+        fields:
+          - label: "Lavori"
+            name: items
+            widget: list
+            label_singular: "lavoro"
+            add_to_top: true
+            summary: "{{fields.titolo}} — {{fields.categoria}}"
+            hint: "Trascina i lavori per cambiarne l'ordine. Per nascondere un lavoro senza cancellarlo togli la spunta 'Mostra sul sito'."
+            fields:
+              - { label: "Titolo", name: titolo, widget: string }
+              - label: "Categoria"
+                name: categoria
+                widget: relation
+                collection: categorie
+                file: categorie
+                search_fields: ["categorie.*.nome"]
+                value_field: "categorie.*.nome"
+                display_fields: ["categorie.*.nome"]
+                required: false
+                hint: "L'elenco delle categorie si modifica nella sezione 'Categorie'."
+              - { label: "Descrizione", name: descrizione, widget: text, required: false, hint: "Una riga di testo nella scheda; nella finestra dei dettagli appare per intero. Lascia una riga vuota per andare a capo in un nuovo paragrafo." }
+              - { label: "Foto principale", name: immagine, widget: image, required: false }
+              - { label: "Video (facoltativo)", name: video, widget: file, required: false, hint: "File MP4 breve e compresso (meglio sotto i 10-15 MB). Compare nella finestra dei dettagli e, se non c'è la foto, anche nella scheda." }
+              - label: "Specifiche (facoltative)"
+                name: specifiche
+                widget: list
+                required: false
+                label_singular: "specifica"
+                summary: "{{fields.nome}}: {{fields.valore}}"
+                hint: "Per esempio: Altezza layer = 0,2 mm; Tempo di stampa = 6 h; Dimensioni = 12 x 8 x 8 cm."
+                fields:
+                  - { label: "Nome", name: nome, widget: string }
+                  - { label: "Valore", name: valore, widget: string }
+              - { label: "Link Etsy del prodotto", name: etsy_url, widget: string, required: false, hint: "Incolla l'indirizzo completo, che inizia con https://" }
+              - { label: "Mostra sul sito", name: visibile, widget: boolean, default: true }
+
+  # ------------------------------------------------------------------
+  - name: categorie
+    label: "Categorie"
+    editor:
+      preview: false
+    files:
+      - name: categorie
+        label: "Categorie dei lavori"
+        file: content/categories.json
+        fields:
+          - label: "Categorie"
+            name: categorie
+            widget: list
+            label_singular: "categoria"
+            summary: "{{fields.nome}}"
+            hint: "Sono i filtri che compaiono sopra i lavori e le voci tra cui scegliere quando aggiungi un lavoro. Se rinomini una categoria, riapri i lavori che la usavano e sceglila di nuovo."
+            fields:
+              - { label: "Nome", name: nome, widget: string }
+
+  # ------------------------------------------------------------------
+  - name: pagina
+    label: "Testi e sezioni"
+    editor:
+      preview: false
+    files:
+      - name: generale
+        label: "Generale (nome, titolo, pulsanti, piè di pagina)"
+        file: content/site.json
+        fields:
+          - { label: "Nome del brand", name: brand, widget: string }
+          - { label: "Logo (immagine, facoltativo)", name: logo, widget: image, required: false, hint: "Se lo carichi sostituisce il nome nel menu. Meglio PNG o SVG con sfondo trasparente." }
+          - { label: "Titolo della scheda del browser", name: titolo_scheda, widget: string, required: false }
+          - { label: "Descrizione per Google", name: descrizione_seo, widget: text, required: false, hint: "Una o due frasi che descrivono il sito." }
+          - { label: "Icona della scheda (favicon)", name: favicon, widget: image, required: false, hint: "Immagine quadrata, per esempio 256 x 256 pixel." }
+          - { label: "Etichetta sopra il titolo", name: hero_tag, widget: string, required: false }
+          - { label: "Titolo principale", name: hero_titolo, widget: string, hint: "Metti un asterisco prima e dopo le parole da colorare. Esempio: Dai pixel alla *materia*" }
+          - { label: "Testo sotto il titolo", name: hero_testo, widget: text, required: false }
+          - { label: "Pulsante 1 - testo", name: hero_btn1_testo, widget: string, required: false, hint: "Lascia vuoto per nasconderlo." }
+          - { label: "Pulsante 1 - link", name: hero_btn1_link, widget: string, required: false, hint: "#lavori, #video, #contatti oppure un indirizzo https://..." }
+          - { label: "Pulsante 2 - testo", name: hero_btn2_testo, widget: string, required: false }
+          - { label: "Pulsante 2 - link", name: hero_btn2_link, widget: string, required: false }
+          - { label: "Video di sfondo (facoltativo)", name: hero_video, widget: file, required: false, hint: "MP4 breve e leggero. Se lo metti sostituisce l'animazione della stampa 3D." }
+          - { label: "Testo del piè di pagina", name: footer_testo, widget: string, required: false, hint: "{anno} diventa l'anno corrente." }
+          - { label: "Riga extra nel piè di pagina", name: footer_extra, widget: string, required: false, hint: "Per esempio la partita IVA." }
+
+      - name: sezioni
+        label: "Sezioni del sito"
+        file: content/sezioni.json
+        fields:
+          - label: "Numeri in evidenza"
+            name: numeri
+            widget: object
+            collapsed: true
+            hint: "La fascia con i contatori sotto la prima schermata."
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: true }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 10, hint: "Le sezioni si dispongono dal numero più basso al più alto." }
+              - label: "Numeri"
+                name: items
+                widget: list
+                required: false
+                label_singular: "numero"
+                summary: "{{fields.numero}}{{fields.suffisso}} {{fields.etichetta}}"
+                fields:
+                  - { label: "Numero", name: numero, widget: number, value_type: int }
+                  - { label: "Simbolo dopo il numero", name: suffisso, widget: string, required: false, hint: "Per esempio +, %, µm" }
+                  - { label: "Etichetta", name: etichetta, widget: string }
+                  - { label: "Mostra", name: visibile, widget: boolean, default: true }
+
+          - label: "Lavori"
+            name: lavori
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: true }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 20 }
+              - { label: "Voce nel menu", name: menu, widget: string, required: false, hint: "Lascia vuoto per non mostrarla nel menu." }
+              - { label: "Etichetta piccola sopra il titolo", name: eyebrow, widget: string, required: false }
+              - { label: "Titolo", name: titolo, widget: string, required: false, hint: "Asterischi attorno alle parole da colorare." }
+              - { label: "Mostra i filtri per categoria", name: filtri, widget: boolean, default: true }
+              - { label: "Testo del filtro 'tutti'", name: testo_tutti, widget: string, required: false }
+              - { label: "Testo del link Etsy", name: testo_etsy, widget: string, required: false }
+              - { label: "Testo del pulsante dettagli (lettori di schermo)", name: testo_dettagli, widget: string, required: false }
+              - { label: "Testo se non ci sono lavori", name: testo_vuoto, widget: string, required: false }
+
+          - label: "Video"
+            name: video
+            widget: object
+            collapsed: true
+            hint: "La sezione compare solo se c'è almeno un video."
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: true }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 30 }
+              - { label: "Voce nel menu", name: menu, widget: string, required: false }
+              - { label: "Etichetta piccola sopra il titolo", name: eyebrow, widget: string, required: false }
+              - { label: "Titolo", name: titolo, widget: string, required: false }
+              - { label: "Avvio automatico (senza audio, in ripetizione)", name: autoplay, widget: boolean, default: false }
+              - label: "Video"
+                name: video
+                widget: list
+                required: false
+                label_singular: "video"
+                summary: "{{fields.titolo}}"
+                fields:
+                  - { label: "File video (MP4)", name: file, widget: file, hint: "Breve e compresso, meglio sotto i 10-15 MB." }
+                  - { label: "Immagine di copertina", name: poster, widget: image, required: false }
+                  - { label: "Didascalia", name: titolo, widget: string, required: false }
+
+          - label: "Chi sono"
+            name: chi_sono
+            widget: object
+            collapsed: true
+            hint: "Nascosta finché non attivi la sezione e scrivi il testo."
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: false }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 35 }
+              - { label: "Voce nel menu", name: menu, widget: string, required: false }
+              - { label: "Etichetta piccola sopra il titolo", name: eyebrow, widget: string, required: false }
+              - { label: "Titolo", name: titolo, widget: string, required: false }
+              - { label: "Testo", name: testo, widget: text, required: false }
+              - { label: "Foto", name: foto, widget: image, required: false }
+
+          - label: "Processo"
+            name: processo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: true }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 40 }
+              - { label: "Voce nel menu", name: menu, widget: string, required: false }
+              - { label: "Etichetta piccola sopra il titolo", name: eyebrow, widget: string, required: false }
+              - { label: "Titolo", name: titolo, widget: string, required: false }
+              - label: "Passi"
+                name: passi
+                widget: list
+                required: false
+                label_singular: "passo"
+                summary: "{{fields.titolo}}"
+                fields:
+                  - { label: "Titolo", name: titolo, widget: string }
+                  - { label: "Descrizione", name: testo, widget: text, required: false }
+
+          - label: "Materiali"
+            name: materiali
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: true }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 50 }
+              - { label: "Voce nel menu", name: menu, widget: string, required: false }
+              - { label: "Etichetta piccola sopra il titolo", name: eyebrow, widget: string, required: false }
+              - { label: "Titolo", name: titolo, widget: string, required: false }
+              - label: "Materiali"
+                name: items
+                widget: list
+                required: false
+                label_singular: "materiale"
+                summary: "{{fields.nome}}"
+                fields:
+                  - { label: "Nome", name: nome, widget: string }
+                  - { label: "Descrizione", name: descrizione, widget: text, required: false }
+
+          - label: "Contatti"
+            name: contatti
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Mostra la sezione", name: mostra, widget: boolean, default: true }
+              - { label: "Posizione", name: ordine, widget: number, value_type: int, default: 60 }
+              - { label: "Voce nel menu", name: menu, widget: string, required: false }
+              - { label: "Titolo", name: titolo, widget: string, required: false }
+              - { label: "Testo", name: testo, widget: text, required: false }
+              - { label: "Email", name: email, widget: string, required: false }
+              - { label: "Testo del pulsante email", name: testo_bottone_email, widget: string, required: false, hint: "Se vuoto mostra l'indirizzo email." }
+              - label: "Link social e negozi"
+                name: social
+                widget: list
+                required: false
+                label_singular: "link"
+                summary: "{{fields.nome}}"
+                hint: "Etsy, Instagram, TikTok, WhatsApp (https://wa.me/39 seguito dal numero)... I link con indirizzo vuoto non compaiono."
+                fields:
+                  - { label: "Nome del pulsante", name: nome, widget: string }
+                  - { label: "Indirizzo (https://...)", name: url, widget: string, required: false }
+
+  # ------------------------------------------------------------------
+  - name: aspetto
+    label: "Aspetto e animazioni"
+    editor:
+      preview: false
+    files:
+      - name: aspetto
+        label: "Colori, stile, animazioni"
+        file: content/aspetto.json
+        fields:
+          - { label: "Colore principale", name: colore_principale, widget: color, enableAlpha: false, allowInput: true, default: "#19e3ff" }
+          - { label: "Colore secondario", name: colore_secondario, widget: color, enableAlpha: false, allowInput: true, default: "#ff6a1a" }
+          - { label: "Colore di sfondo", name: colore_sfondo, widget: color, enableAlpha: false, allowInput: true, default: "#05070d" }
+          - { label: "Colore delle schede", name: colore_schede, widget: color, enableAlpha: false, allowInput: true, default: "#0b1020" }
+          - { label: "Colore del testo", name: colore_testo, widget: color, enableAlpha: false, allowInput: true, default: "#e8f1ff" }
+          - { label: "Colore del testo secondario", name: colore_testo_secondario, widget: color, enableAlpha: false, allowInput: true, default: "#8fa3c4" }
+          - label: "Carattere"
+            name: carattere
+            widget: select
+            default: moderno
+            options:
+              - { label: "Moderno", value: moderno }
+              - { label: "Tecnico (stile codice)", value: tecnico }
+              - { label: "Elegante (con grazie)", value: elegante }
+              - { label: "Arrotondato", value: arrotondato }
+          - label: "Angoli"
+            name: angoli
+            widget: select
+            default: arrotondati
+            options:
+              - { label: "Netti", value: netti }
+              - { label: "Arrotondati", value: arrotondati }
+              - { label: "Molto arrotondati", value: morbidi }
+          - { label: "Animazione della stampa 3D nella prima schermata", name: animazione_hero, widget: boolean, default: true }
+          - label: "Velocità dell'animazione"
+            name: velocita_animazione
+            widget: select
+            default: normale
+            options:
+              - { label: "Lenta", value: lenta }
+              - { label: "Normale", value: normale }
+              - { label: "Veloce", value: veloce }
+          - { label: "Effetto 3D al passaggio del mouse sulle schede", name: effetto_3d_schede, widget: boolean, default: true }
+          - { label: "Elementi che compaiono scorrendo la pagina", name: effetto_comparsa, widget: boolean, default: true }
+          - { label: "CSS personalizzato (avanzato)", name: css_personalizzato, widget: text, required: false, hint: "Solo per esperti: codice CSS aggiunto alla pagina." }

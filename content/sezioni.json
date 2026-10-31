@@ -1,0 +1,121 @@
+{
+  "numeri": {
+    "mostra": true,
+    "ordine": 10,
+    "items": [
+      {
+        "numero": 0,
+        "suffisso": "+",
+        "etichetta": "Progetti stampati",
+        "visibile": false
+      },
+      {
+        "numero": 3,
+        "suffisso": "",
+        "etichetta": "Materiali",
+        "visibile": true
+      },
+      {
+        "numero": 100,
+        "suffisso": " µm",
+        "etichetta": "Altezza layer minima",
+        "visibile": true
+      }
+    ]
+  },
+  "lavori": {
+    "mostra": true,
+    "ordine": 20,
+    "menu": "Lavori",
+    "eyebrow": "01 / PORTFOLIO",
+    "titolo": "I miei *lavori*",
+    "filtri": true,
+    "testo_tutti": "Tutti",
+    "testo_etsy": "Vedi su Etsy →",
+    "testo_dettagli": "Dettagli",
+    "testo_vuoto": "Nuovi lavori in arrivo."
+  },
+  "video": {
+    "mostra": true,
+    "ordine": 30,
+    "menu": "Video",
+    "eyebrow": "02 / SHOWREEL",
+    "titolo": "Guarda la stampa in *azione*",
+    "autoplay": false,
+    "video": []
+  },
+  "chi_sono": {
+    "mostra": false,
+    "ordine": 35,
+    "menu": "Chi sono",
+    "eyebrow": "CHI SONO",
+    "titolo": "Dietro ogni *layer*",
+    "testo": "",
+    "foto": ""
+  },
+  "processo": {
+    "mostra": true,
+    "ordine": 40,
+    "menu": "Processo",
+    "eyebrow": "03 / WORKFLOW",
+    "titolo": "Dal modello al *pezzo finito*",
+    "passi": [
+      {
+        "titolo": "Progetto",
+        "testo": "Modellazione 3D oppure analisi del tuo file STL."
+      },
+      {
+        "titolo": "Slicing",
+        "testo": "Parametri scelti in base al materiale e al risultato che vuoi."
+      },
+      {
+        "titolo": "Stampa",
+        "testo": "Deposizione strato dopo strato, sotto controllo."
+      },
+      {
+        "titolo": "Finitura",
+        "testo": "Rimozione dei supporti e rifinitura del pezzo."
+      }
+    ]
+  },
+  "materiali": {
+    "mostra": true,
+    "ordine": 50,
+    "menu": "Materiali",
+    "eyebrow": "04 / MATERIALI",
+    "titolo": "Cosa posso *stampare*",
+    "items": [
+      {
+        "nome": "PLA",
+        "descrizione": "Rigido e ricco di dettaglio: ideale per modelli, prototipi estetici e oggetti da esposizione."
+      },
+      {
+        "nome": "PETG",
+        "descrizione": "Più tenace e resistente del PLA, tollera meglio umidità e calore: per parti funzionali."
+      },
+      {
+        "nome": "TPU",
+        "descrizione": "Flessibile ed elastico: per guarnizioni, protezioni e parti che devono piegarsi."
+      }
+    ]
+  },
+  "contatti": {
+    "mostra": true,
+    "ordine": 60,
+    "menu": "Contatti",
+    "titolo": "Hai un'idea da *materializzare*?",
+    "testo": "Raccontami il tuo progetto e vediamo insieme come realizzarlo.",
+    "email": "ciao@tuodominio.it",
+    "testo_bottone_email": "",
+    "social": [
+      {
+        "nome": "Negozio Etsy",
+        "url": ""
+      },
+      {
+        "nome": "Instagram",
+        "url": ""
+      }
+    ]
+  }
+}

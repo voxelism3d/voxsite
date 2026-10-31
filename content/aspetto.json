@@ -1,0 +1,15 @@
+{
+  "colore_principale": "#19e3ff",
+  "colore_secondario": "#ff6a1a",
+  "colore_sfondo": "#05070d",
+  "colore_schede": "#0b1020",
+  "colore_testo": "#e8f1ff",
+  "colore_testo_secondario": "#8fa3c4",
+  "carattere": "moderno",
+  "angoli": "arrotondati",
+  "animazione_hero": true,
+  "velocita_animazione": "normale",
+  "effetto_3d_schede": true,
+  "effetto_comparsa": true,
+  "css_personalizzato": ""
+}

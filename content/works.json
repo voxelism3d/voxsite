@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "titolo": "Vaso Parametrico",
+      "categoria": "PLA",
+      "descrizione": "Esempio: geometrie organiche generate al computer.",
+      "immagine": "",
+      "video": "",
+      "specifiche": [],
+      "etsy_url": "",
+      "visibile": true
+    },
+    {
+      "titolo": "Componente Meccanico",
+      "categoria": "PETG",
+      "descrizione": "Esempio: staffe e ingranaggi funzionali.",
+      "immagine": "",
+      "video": "",
+      "specifiche": [],
+      "etsy_url": "",
+      "visibile": true
+    },
+    {
+      "titolo": "Miniatura Dettagliata",
+      "categoria": "PLA",
+      "descrizione": "Esempio: dettagli fini per modellismo e collezionismo.",
+      "immagine": "",
+      "video": "",
+      "specifiche": [],
+      "etsy_url": "",
+      "visibile": true
+    },
+    {
+      "titolo": "Guarnizione Flessibile",
+      "categoria": "TPU",
+      "descrizione": "Esempio: protezioni e guarnizioni elastiche su misura.",
+      "immagine": "",
+      "video": "",
+      "specifiche": [],
+      "etsy_url": "",
+      "visibile": true
+    },
+    {
+      "titolo": "Oggetto da Esposizione",
+      "categoria": "PLA",
+      "descrizione": "Esempio: finiture pulite per oggetti da mettere in mostra.",
+      "immagine": "",
+      "video": "",
+      "specifiche": [],
+      "etsy_url": "",
+      "visibile": true
+    },
+    {
+      "titolo": "Prototipo Rapido",
+      "categoria": "PETG",
+      "descrizione": "Esempio: dall'idea al pezzo fisico in poche ore.",
+      "immagine": "",
+      "video": "",
+      "specifiche": [],
+      "etsy_url": "",
+      "visibile": true
+    }
+  ]
+}
